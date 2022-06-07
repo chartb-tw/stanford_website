@@ -1,0 +1,22 @@
+body{
+    font: 20px Arial, sans-serif;
+}
+
+h1{
+    text-align: center;
+}
+
+a:hover{
+    background-color: blueviolet;
+}
+.stanford{
+    color: red;
+    font-weight: bold;
+}
+
+#spt{
+    float: left;
+    height: 100px;
+    width: auto;
+    padding: 20px;
+}
