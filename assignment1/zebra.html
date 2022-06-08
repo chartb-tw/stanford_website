@@ -28,22 +28,31 @@
         .even-table td{
             border: 1px solid black;
         }
+        .table-title{
+            border: 1px solid black;
+        }
         #info-source{
             font-style: italic;
             font-family: serif;
         }
-        .table-title th{
-            border: 1px solid white;
+        #title-lhs{
+            border-right: 1px solid white;
+        }
+        #title-rhs{
+            border-left: 1px solid white;
         }
     </style>
 </head>
 <body>
     <h1 id="page-title">A table of something</h1>
     <table id="page-table">
+        <thead>
         <tr class="table-title">
-            <th>Group</th>
-            <th>Quantity</th>
+            <th id="title-lhs">Group</th>
+            <th id="title-rhs">Quantity</th>
         </tr>
+    </thead>
+    <tbody>
         <tr class="odd-table">
             <td>Place 1</td>
             <td>1</td>
@@ -60,6 +69,7 @@
             <td>Place 4</td>
             <td>4</td>
         </tr>
+    </tbody>
     </table>
     <p id="info-source">Source: Just trust me, bro</p>
 </body>
