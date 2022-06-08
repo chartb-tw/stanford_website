@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="personal.css" />
     <link rel="icon" href="pause-button.png" />
     <style>
+        table{
+            border-collapse: collapse;
+        }
         #page-title{
             font-family: serif;
         }
@@ -13,19 +16,51 @@
             color: white;
             background-color: black;
         }
+        .odd-table{
+            background-color: white;
+        }
+        .odd-table td{
+            border: 1px solid black;
+        }
+        .even-table{
+            background-color: #eee;
+        }
+        .even-table td{
+            border: 1px solid black;
+        }
+        #info-source{
+            font-style: italic;
+            font-family: serif;
+        }
+        .table-title th{
+            border: 1px solid white;
+        }
     </style>
 </head>
 <body>
     <h1 id="page-title">A table of something</h1>
     <table id="page-table">
-        <tr>
+        <tr class="table-title">
             <th>Group</th>
             <th>Quantity</th>
         </tr>
-        <tr>
+        <tr class="odd-table">
             <td>Place 1</td>
             <td>1</td>
         </tr>
+        <tr class="even-table">
+            <td>Place 2</td>
+            <td>2</td>
+        </tr>
+        <tr class="odd-table">
+            <td>Place 3</td>
+            <td>3</td>
+        </tr>
+        <tr class="even-table">
+            <td>Place 4</td>
+            <td>4</td>
+        </tr>
     </table>
+    <p id="info-source">Source: Just trust me, bro</p>
 </body>
 </html>
