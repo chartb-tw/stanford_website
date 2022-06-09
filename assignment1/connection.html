@@ -40,6 +40,10 @@
             border-color: black;
             background-color: #CC9191;
         }
+        .title-label{
+            width: 96%;
+            padding: 2%;
+        }
         .subtitle{
             font-weight: bold;
         }
@@ -59,7 +63,7 @@
         <div class="post-content">
             <h2>A random doggo</h2>
             <div class="title-bar">
-                <h3>Status updates</h3>
+                <h3><span class="title-label">Status updates</span></h3>
             </div>
 
             <hr/>
@@ -90,21 +94,21 @@
         <div class="about-user">
             <img src="alma.png" alt="Another image" width="100%" />
             <div class="about-bars">
-                <div class="title-bar">About me</div>
+                <div class="title-bar"><span class="title-label">About me</span></div>
                 <span class="subtitle">Birthday:</span> April 20, 1969 <br/>
                 <span class="subtitle">Gender:</span> Female <br/>
             </div>
             <div class="friends-bar">
-                <div class="title-bar">Friends</div>
+                <div class="title-bar"><span class="title-label">Friends</span></div>
                 <span class="subtitle">Person 1</span> <br/>
                 <span class="subtitle">Person 2</span> <br/>
             </div>
         </div>
     </div>
     <div class="post-update">
-        <div class="title-bar">Post an update:</div>
+        <div class="title-bar"><span class="title-label">Post an update:</span></div>
         <br/>
-        <form style="">
+        <form>
             <textarea name="postcontent" placeholder="What are you thinking about?" style="width: 98.5%;"></textarea><br/>
             <input type="submit" value="Post"/>
         </form>
