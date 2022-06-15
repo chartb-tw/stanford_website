@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Bing Concert Hall</title>
+        <meta name="generator" content="Geany 1.38" />
+        <link rel="icon" href="pause-button.png" />
+        <style>
+            * {
+                box-sizing: border-box;
+                }
+
+            [class*="col-"] {
+                float: left;
+                padding: 15px;
+                border: 1px 
+                solid red;
+                }
+            .row::after {
+                content: "";
+                clear: both;
+                display: table;
+                }
+            
+            @media only screen and (max-width: 650px){
+                /* For mobile phones: */
+                [class*="col-"] {
+                    width: 100%;
+                    }
+                
+                div.spa{
+                    font-size: 28pt;
+                }
+
+                img.bing-placeholder{
+                    width: calc(100% - 10px);
+                }
+
+                div.nosmol{
+                    display: none;
+                }
+                
+            }
+
+            @media only screen and (min-width: 815px) {
+                /* For desktop: */
+                .col-1 {width: 8.33%;}
+                .col-2 {width: 16.66%;}
+                .col-3 {width: 25%;}
+                .col-4 {width: 33.33%;}
+                .col-5 {width: 41.66%;}
+                .col-6 {width: 50%;}
+                .col-7 {width: 58.33%;}
+                .col-8 {width: 66.66%;}
+                .col-9 {width: 75%;}
+                .col-10 {width: 83.33%;}
+                .col-11 {width: 91.66%;}
+                .col-12 {width: 100%;}
+
+                div.spa{
+                    font-size: 36pt;
+                }
+                
+                img.bing-placeholder{
+                    float: left;
+                    width: 35%;
+                    padding: 2.5%;
+                }
+
+                div.calendar{
+                    float: right;
+                }
+                
+                div.smol{
+                    display: none;
+                }
+                
+                }
+            
+            @media only screen and (min-width: 650px) and (max-width: 815px) {
+                /* For tablets: */
+                .col-s-1 {width: 8.33%;}
+                .col-s-2 {width: 16.66%;}
+                .col-s-3 {width: 25%;}
+                .col-s-4 {width: 33.33%;}
+                .col-s-5 {width: 41.66%;}
+                .col-s-6 {width: 50%;}
+                .col-s-7 {width: 58.33%;}
+                .col-s-8 {width: 66.66%;}
+                .col-s-9 {width: 75%;}
+                .col-s-10 {width: 83.33%;}
+                .col-s-11 {width: 91.66%;}
+                .col-s-12 {width: 100%;}
+
+                div.spa{
+                    font-size: 32pt;
+                }
+                
+                div.calendar{
+
+                }
+
+                img.bing-placeholder{
+                    float: left;
+                    width: 35%;
+                    padding: 2.5%;
+                }
+
+                div.nosmol{
+                    display: none;
+                }
+
+                }
+
+
+            .article h2{
+                font-size: 18pt;
+                font-weight: bold;
+                font-family: sans-serif;
+            }
+
+            .calendar h3{
+                font-size: 14pt;
+                font-weight: bold;
+                font-family: sans-serif;
+            }
+
+            .clearfix {
+                overflow: auto;
+                }
+
+            .clr{
+                clear: both;
+            }
+
+            .cal-item{
+                border-style: solid none;
+                border-collapse: collapse;
+                font-size: 12pt;
+                font-style: italic;
+                font-family: sans-serif;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="">
+            <div class="col-10 col-s-12 spa"><h1>Stanford Performing Arts</h1></div>
+            <div class="col-2 col-s-12 smol" style=""><h3>Autumn 2012 Edition</h3></div>
+            <div class="col-2 col-s-12 nosmol"><h3>Autumn 2012 <br/> Edition</h3></div>
+        </div>
+
+        <br />
+
+        
+            <div class="article clr col-8 col-s-12">
+                <h2>Bing Concert Hall</h2>
+                <img src="marek-piwnicki-sZnu3NIwwq8-unsplash.jpeg" alt="some image" class="bing-placeholder" /> <!-- Photo by Marek Piwnicki on Unsplash - https://unsplash.com/@marekpiwnicki -->
+                <p>
+                    On January 11, 2013, after two years of construction, Stanford Live inaugurated its glorious new home at Bing Concert Hall and launched a new era in the performing arts at Stanford University.
+                </p>
+                <p>
+                    Since then, the Bing has welcomed such artists as Anna Deavere Smith, Yo-Yo Ma, and Kristin Chenoweth; had 14 world premieres (including nine by Stanford composers); issued 22,000 student tickets; and attracted more than 200,000 people to its events. From its uniquely beautiful architectural elements to its acoustic flexibility, the Bing is a key landmark in the newly finished Stanford Arts District, located at the gates of the university campus.
+                </p>
+            </div>
+            <div class="calendar col-4 col-s-12">
+                <h3>Calendar</h3>
+                <div class="cal-item">
+                    Item one
+                </div>
+                <div class="cal-item">
+                    Item two
+                </div>
+                <div class="cal-item">
+                    Item three
+                </div>
+                <div class="cal-item">
+                    Item four
+                </div>
+            </div>
+        
+    </body>
+</html>
