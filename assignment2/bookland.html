@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Bookland</title>
+    <link rel="icon" href="keycap-digit-two.png" />
+    <link rel="stylesheet" href="bookland.css">
+    <!-- style>
+    </style -->
+</head>
+<body>
+
+    <form name="bookland">
+        <label for="author">
+            Author name:
+        </label>
+        <input type="text" name="author" id="author">
+        <br/>
+        <label for="booktitle">
+            Book title:
+        </label>
+        <input type="text" name="booktitle" id="booktitle">
+        <br/>
+        <button type="button" onclick="findBook()">Find book</button>
+        <button type="button" onclick="clearInfo()">Clear info</button>
+        <br/>
+        <textarea name="textspot" id="textspot" readonly></textarea>
+    </form>
+    <script src="bookland.js"></script>
+</body>
+</html>
