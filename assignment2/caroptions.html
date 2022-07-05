@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Configure your GT Super Sportscar</title>
+    <link rel="icon" href="keycap-digit-two.png" />
+    <link rel="stylesheet" href="caroptions.css">
+    <!-- style>
+    </style -->
+</head>
+<body>
+    <div>
+        <h1>Configure your GT Super Sportscar</h1>
+    </div>
+    <div class="row">
+        <div class="column">
+            <form name="car-customise">
+                <div class="custom-car">
+                    <h3 class="boxtitle">Configuration</h3>
+                        <input type="radio" name="config" id="config-gtm" value="17790" checked="checked">
+                        <label for="config-gtm">GT Manual, <span class="price">$17,790.00</span></label>
+                        <br />
+                        <input type="radio" name="config" id="config-gta" value="18590">
+                        <label for="config-gta">GT Automatic, <span class="price">$18,590.00</span></label>
+                        <br />
+                        <input type="radio" name="config" id="config-gtsm" value="22455">
+                        <label for="config-gtsm">GT-S Manual, <span class="price">$22,455.00</span></label>
+                        <br />
+                        <input type="radio" name="config" id="config-gtss" value="23155">
+                        <label for="config-gtss">GT-S Sportshift, <span class="price">$23,155.00</span></label>
+                </div>
+                <div class="custom-car">
+                    <h3 class="boxtitle">Factory options</h3>
+                        <input type="radio" name="factory" id="opt1" value="1235">
+                        <label for="opt1">
+                            Option combo #1, <span class="price">$1235.00</span>
+                            <ul>
+                                <li>Power windows, doors, cruise control</li>
+                            </ul>
+                        </label>
+                        <input type="radio" name="factory" id="opt2" value="3354">
+                        <label for="opt2">
+                            Option combo #2, <span class="price">$3354.00</span> 
+                            <ul>
+                                <li>Rear spoiler and fog lamps</li>
+                                <li>Keyless entry</li>
+                                <li>Power tilt and slide monoroof</li>
+                                <li>Power windows, doors, cruise control</li>
+                            </ul>
+                        </label>
+                        <input type="radio" name="factory" id="opt0" value="0" checked="checked">
+                        <label for="opt0">
+                            No combo, <span class="price">$0</span> 
+                        </label>
+                </div>
+                <div class="custom-car">
+                    <h3 class="boxtitle">Dealer options</h3>
+                        <input type="checkbox" name="dealer" id="stereo" value="550">
+                        <label for="stereo">
+                            Upgraded stereo system, <span class="price">$550.00</span> 
+                        </label>
+                        <br />
+                        <input type="checkbox" name="dealer" id="security" value="399">
+                        <label for="security">
+                            VIP security system, <span class="price">$399.00</span>
+                        </label>
+                        <br />
+                        <input type="checkbox" name="dealer" id="mirror" value="295">
+                        <label for="mirror">
+                            Auto dimming mirror, <span class="price">$295.00</span>
+                        </label>
+                </div>
+                <div class="custom-car">
+                    <h3 class="boxtitle">Total price</h3>
+                    <output name="total-cost"></output>
+                    <input type="button" value="Calculate total" onclick="calcTotalCost()">
+                </div>
+            </form>
+        </div>
+        <div class="column"> 
+            <div class="custom-car">
+                <h3 class="boxtitle">Choose a color</h3>
+                <form name="colorcar" oninput="selectCarColor()">
+                    <select name="car-color" id="car-color">
+                        <option value="red" selected>Red</option>
+                        <option value="blue">Blue</option>
+                        <option value="silver">Silver</option>
+                        <option value="white">White</option>
+                        <option value="black">Black</option>
+                    </select>
+                </form>
+                <img src="carpics/car-red.png" id="car-img" width="20%">
+            </div>
+        </div>
+    </div>
+    <script src="caroptions.js"></script>
+</body>
+</html>
