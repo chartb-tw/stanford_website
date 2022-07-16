@@ -11,7 +11,6 @@ class CollegeSet {
 
   checkSAT(min = -Infinity, max = Infinity) {
     if (min > max) {
-      alert("Your minimum SAT score was higher than your maximum SAT score");
       return false;
     }
     return this.minSAT >= min && this.maxSAT <= max;
