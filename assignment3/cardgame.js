@@ -12,6 +12,9 @@ function resetGame() {
     const j = Math.floor(Math.random() * (i + 1));
     [cardRound[i], cardRound[j]] = [cardRound[j], cardRound[i]];
   }
+  for (let i = 0; i < 6; i++) {
+    document.querySelectorAll("img")[i].setAttribute("src", "cards/rear.png");
+  }
 }
 
 function flipCard(pos) {
