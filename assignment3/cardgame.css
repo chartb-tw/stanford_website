@@ -1,0 +1,21 @@
+body {
+  background-color: lightgreen;
+}
+
+.grid-container {
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  padding: 10px;
+}
+
+.grid-item {
+  padding: 10px;
+}
+
+.hide-card {
+  visibility: hidden;
+}
+
+.card-img {
+  width: 100%;
+}

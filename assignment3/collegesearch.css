@@ -1,0 +1,26 @@
+body{
+    background-color: aliceblue;
+}
+
+tr:nth-child(odd) {
+    background-color: whitesmoke;
+}
+
+tr:nth-child(even) {
+    background-color: gray;  
+}
+
+#table-header{
+    background-color: black;
+    color: white;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+}
+
+.grid-item{
+    padding: 20px;
+}

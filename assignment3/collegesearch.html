@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Search college data</title>
+    <link rel="stylesheet" href="collegesearch.css" />
+    <link rel="icon" href="keycap-digit-three.png" />
+  </head>
+  <body>
+    <h1>F</h1>
+    <div class="container">
+      <div class="grid-item">
+        <table>
+          <thead>
+            <tr id="table-header">
+              <th>Name</th>
+              <th>SAT High</th>
+              <th>SAT Low</th>
+              <th>Tuition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="4">Search for a college!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid-item">
+        <h3>Search Criteria</h3>
+        <form name="college-search">
+          <input
+            type="radio"
+            name="typeof-college"
+            id="public-college"
+            value="public"
+          />
+          <label for="public-college">Public</label>
+          <input
+            type="radio"
+            name="typeof-college"
+            id="private-collge"
+            value="private"
+          />
+          <label for="private-collge">Private</label>
+          <input
+            type="radio"
+            name="typeof-college"
+            id="indifferent-college"
+            value="indifferent"
+            checked
+          />
+          <label for="indifferent-college">Don't care</label>
+          <br />
+          <label for="max-tuition">Maximum tuition</label>
+          <input
+            type="number"
+            step="0.01"
+            id="max-tuition"
+            name="max-tuition"
+          />
+          <br />
+          <label for="max-sat">Maximum High SAT</label>
+          <input type="number" step="0.01" id="max-sat" name="maxsat" />
+          <br />
+          <label for="min-sat">Minimum Low SAT</label>
+          <input type="number" step="0.01" id="min-sat" name="minsat" />
+          <br />
+          <button type="button" onclick="updateSearchForm()">Update</button>
+        </form>
+      </div>
+    </div>
+    <script src="collegesearch.js"></script>
+  </body>
+</html>
