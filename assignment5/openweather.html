@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>OpenWeather API</title>
+    <link rel="stylesheet" href="openweather.css" />
+    <link rel="icon" href="keycap-digit-five.png" />
+  </head>
+  <body>
+    <h1>OpenWeather</h1>
+    <form name="weather-form">
+      <label for="zipcode">Enter ZIP code:</label>
+      <input
+        type="text"
+        name="zip-code"
+        id="zipcode"
+        onkeydown="if (event.keyCode == 13) {getWeather(); return false;}"
+        autocomplete="off"
+      />
+      <button type="button" onclick="getWeather()">Get Weather</button>
+      <button type="button" onclick="clearForm()">Clear</button>
+      <br />
+      <br />
+      <div class="text-area-display">
+        <textarea readonly name="weather-area"></textarea>
+      </div>
+    </form>
+  </body>
+  <script src="openweather.js"></script>
+</html>

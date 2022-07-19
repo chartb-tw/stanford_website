@@ -1,0 +1,8 @@
+body {
+  background-color: aliceblue;
+}
+
+.text-area-display textarea {
+  width: 400px;
+  height: 200px;
+}
