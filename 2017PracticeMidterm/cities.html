@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--
+   untitled.html
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+  <head>
+    <meta charset="utf-8" />
+    <title>City Search</title>
+    <meta name="generator" content="Geany 1.38" />
+    <style>
+      body {
+        background-color: aliceblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Search Criteria</h1>
+    <form name="density-search">
+      <label for="min-density">Minimum density</label>
+      <input
+        type="number"
+        step="1"
+        min="0"
+        name="min-density"
+        id="min-density"
+        onkeydown="if(event.keyCode == 13){getResults(); return false;}"
+      />
+      <br />
+      <label for="max-density">Maximum density</label>
+      <input
+        type="number"
+        step="1"
+        min="0"
+        name="max-density"
+        id="max-density"
+        onkeydown="if(event.keyCode == 13){getResults(); return false;}"
+      />
+      <br />
+      <button type="button" onclick="getResults()">Search</button>
+    </form>
+    <h1>Results</h1>
+    <div id="search-results">Enter Search Criteria</div>
+    <script src="cities-list.js"></script>
+    <script>
+      function getResults() {
+        const searchForm = document.forms["density-search"];
+        const minDensity =
+          searchForm["min-density"].value === ""
+            ? 0
+            : Number(searchForm["min-density"].value) >= 0
+            ? Number(searchForm["min-density"].value)
+            : 0;
+        const maxDensity =
+          searchForm["max-density"].value === ""
+            ? Infinity
+            : Number(searchForm["max-density"].value);
+        // console.log(`Between ${minDensity} and ${maxDensity}`);
+        document.getElementById("search-results").innerHTML = "";
+        const outputCities = citiesList.filter(
+          (city) => minDensity <= city.density && city.density <= maxDensity
+        );
+        if (outputCities.length == 0) {
+          document.getElementById("search-results").innerHTML =
+            "No Cities Found";
+        } else {
+          for (let i = 0; i < outputCities.length; i++) {
+            const thisCity = outputCities[i];
+            document.getElementById(
+              "search-results"
+            ).innerHTML += `<h3>${thisCity.name}</h3>
+      <p>${thisCity.country}</p>
+      <p>population: ${thisCity.population}</p>
+      <p>area: ${thisCity.area} km<sup>2</sup></p>
+      <p>density: ${thisCity.density} people/km<sup>2</sup></p>`;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

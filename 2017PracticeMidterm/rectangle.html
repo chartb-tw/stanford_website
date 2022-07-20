@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--
+   untitled.html
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Rectangle exercises</title>
+    <meta name="generator" content="Geany 1.38" />
+    <style>
+      body {
+        background-color: aliceblue;
+        width: 100%;
+        height: 100%;
+      }
+      #rect-form {
+        width: 100px;
+        position: fixed;
+        right: 120px;
+        top: 20px;
+        /*
+        border: 1px solid black;
+        */
+      }
+      #test {
+        width: 300px;
+        height: 300px;
+        border: 2px solid red;
+      }
+      html,
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+      .everything {
+        position: relative;
+        width: 105%;
+        height: 105%;
+        border: 2px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <svg></svg>
+    <div id="rect-form" onclick="event.stopPropagation()">
+      <form name="rectangle">
+        <fieldset>
+          <label for="xvalue">x:</label>
+          <input
+            type="number"
+            step="1"
+            name="xVal"
+            id="xvalue"
+            onkeydown="if(event.keyCode == 13){return false;}"
+          />
+          <br />
+          <label for="yvalue">y:</label>
+          <input
+            type="number"
+            step="1"
+            name="yVal"
+            id="yvalue"
+            onkeydown="if(event.keyCode == 13){return false;}"
+          />
+          <br />
+          <label for="width">width:</label>
+          <input
+            type="number"
+            step="1"
+            min="1"
+            name="width"
+            id="width"
+            onkeydown="if(event.keyCode == 13){return false;}"
+          />
+          <br />
+          <label for="height">height:</label>
+          <input
+            type="number"
+            step="1"
+            min="1"
+            name="height"
+            id="height"
+            onkeydown="if(event.keyCode == 13){return false;}"
+          />
+          <br />
+          <select id="colors" name="color-choice">
+            <option value="white" selected>white</option>
+            <option value="red">red</option>
+            <option value="green">green</option>
+            <option value="blue">blue</option>
+          </select>
+
+          <br />
+          <button type="button" name="update" onclick="updateRectangle()">
+            Update
+          </button>
+          <button type="button" name="delete" onclick="deleteRectangle()">
+            Delete
+          </button>
+        </fieldset>
+      </form>
+    </div>
+    <script>
+      let posX;
+      let posY;
+      let rectWidth;
+      let rectHeight;
+      let clickCtr = 0;
+
+      document.addEventListener("click", getCoordinates);
+
+      function updateRectangle() {
+        const drawn = document.querySelector("svg");
+        const rectForm = document.forms["rectangle"];
+        const xValue =
+          rectForm["xVal"].value == "" ? 0 : Number(rectForm["xVal"].value);
+        const yValue =
+          rectForm["yVal"].value == "" ? 0 : Number(rectForm["yVal"].value);
+        const width =
+          rectForm["width"].value == "" || Number(rectForm["width"].value) < 1
+            ? 1
+            : Number(rectForm["width"].value);
+        const height =
+          rectForm["height"].value == "" || Number(rectForm["height"].value) < 1
+            ? 1
+            : Number(rectForm["height"].value);
+        const color = rectForm["color-choice"].value;
+        console.log(
+          `x: ${xValue} y: ${yValue} width: ${width} height: ${height} colour: ${color}`
+        );
+        if (drawn.innerHTML != "") {
+          drawn.innerHTML = `<rect x=${xValue} y=${yValue} width=${width} height=${height} style="fill:${color};stroke:black;" />`;
+        }
+      }
+      function deleteRectangle() {
+        document.querySelector("svg").innerHTML = "";
+        clickCtr = 0;
+        const rectForm = document.forms["rectangle"];
+        rectForm["xVal"].value = "";
+        rectForm["yVal"].value = "";
+        rectForm["width"].value = "";
+        rectForm["height"].value = "";
+      }
+
+      function getCoordinates(evt) {
+        if (clickCtr == 0) {
+          posX = evt.clientX;
+          posY = evt.clientY;
+          clickCtr++;
+        } else if ((clickCtr = 1)) {
+          clickCtr++;
+          const rectForm = document.forms["rectangle"];
+          rectWidth = Math.abs(posX - evt.clientX);
+          rectHeight = Math.abs(posY - evt.clientY);
+          if (posX > evt.clientX) {
+            posX = evt.clientX;
+          }
+          if (posY > evt.clientY) {
+            posY = evt.clientY;
+          }
+          document.querySelector(
+            "svg"
+          ).innerHTML = `<rect x=${posX} y=${posY} width=${rectWidth} height=${rectHeight} style="fill:${rectForm["color-choice"].value};stroke:black;" />`;
+          rectForm["xVal"].value = posX;
+          rectForm["yVal"].value = posY;
+          rectForm["width"].value = rectWidth;
+          rectForm["height"].value = rectHeight;
+        }
+      }
+    </script>
+  </body>
+</html>
