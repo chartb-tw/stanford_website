@@ -165,7 +165,7 @@
           posX = evt.clientX;
           posY = evt.clientY;
           clickCtr++;
-        } else if ((clickCtr = 1)) {
+        } else if (clickCtr == 1) {
           clickCtr++;
           const rectForm = document.forms["rectangle"];
           rectWidth = Math.abs(posX - evt.clientX);
