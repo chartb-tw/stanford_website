@@ -23,10 +23,167 @@
 
   <head>
     <meta charset="utf-8" />
-    <title>untitled</title>
+    <title>Shooting Gallery</title>
     <meta name="generator" content="Geany 1.38" />
-    <style></style>
+    <style>
+      #target-zone {
+        border: 1px solid black;
+        width: 800px;
+        height: 400px;
+        position: fixed;
+        left: 50px;
+        top: 50px;
+      }
+      #info-zone {
+        /* font: 20px bold sans-serif; */
+        font-weight: bold;
+        font-size: 20pt;
+        font-family: sans-serif;
+        position: fixed;
+        left: 900px;
+        top: 50px;
+      }
+      .hide-me {
+        visibility: hidden;
+      }
+      .target-10 {
+        width: 120px;
+        height: 120px;
+        position: absolute;
+      }
+      .target-20 {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+      }
+      .target-50 {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+      }
+    </style>
   </head>
 
-  <body></body>
+  <body>
+    <div id="target-zone"></div>
+    <div id="info-zone">
+      <p>Score: <span id="score">0</span></p>
+      <p>Targets remaining: <span id="target-no">7</span></p>
+      <button type="button" id="game-button" onclick="resetGame()">
+        Play game
+      </button>
+    </div>
+
+    <script>
+      const targetSet = 7;
+      const targetGroup = {
+        ten: {
+          pointValue: 10,
+          timeVisible: 2000,
+          squareSize: 120,
+          imgName: "ten",
+          imgClassName: "target-10",
+          probability: 0.55,
+        },
+        twenty: {
+          pointValue: 20,
+          timeVisible: 1000,
+          squareSize: 80,
+          imgName: "twenty",
+          imgClassName: "target-20",
+          probability: 0.35,
+        },
+        fifty: {
+          pointValue: 50,
+          timeVisible: 500,
+          squareSize: 50,
+          imgName: "fifty",
+          imgClassName: "target-50",
+          probability: 0.1,
+        },
+      };
+      let score = 0;
+      let targetsRemaining = targetSet;
+      let imgPos = [0, 0];
+      let hold = false;
+      let targetObj;
+      let funcInterval;
+
+      function decreaseTargets() {
+        if (targetsRemaining > 0) {
+          targetsRemaining--;
+          document.getElementById("target-no").innerHTML = targetsRemaining;
+        }
+
+        if (targetsRemaining === 0) {
+          clearInterval(funcInterval);
+          document.getElementById("game-button").classList.remove("hide-me");
+        }
+      }
+
+      function resetGame() {
+        score = 0;
+        document.getElementById("score").innerHTML = score;
+        targetsRemaining = targetSet;
+        document.getElementById("target-no").innerHTML = targetsRemaining;
+        document.getElementById("game-button").classList.add("hide-me");
+        funcInterval = setInterval(displayTarget, 5000);
+      }
+
+      // random functions from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random#getting_a_random_integer_between_two_values
+      function getRandomArbitrary(min, max) {
+        return min + Math.floor(Math.random() * (max - min));
+      }
+
+      function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+      }
+
+      function displayTarget() {
+        const randomNum = Math.random();
+        if (randomNum < targetGroup.ten.probability) {
+          targetObj = targetGroup.ten;
+        } else if (
+          randomNum <
+          targetGroup.ten.probability + targetGroup.twenty.probability
+        ) {
+          targetObj = targetGroup.twenty;
+        } else {
+          targetObj = targetGroup.fifty;
+        }
+        imgPos = [
+          getRandomInt(0, 800 - targetObj.squareSize),
+          getRandomInt(0, 400 - targetObj.squareSize),
+        ];
+        document.getElementById("target-zone").innerHTML = `<img src=${
+          targetObj.imgName + ".png"
+        } class=${targetObj.imgClassName} style="left: ${imgPos[0]}px; top: ${
+          imgPos[1]
+        }px;" onclick="targetHit(targetObj)" />`;
+        setTimeout(() => {
+          if (!hold) {
+            document.getElementById("target-zone").innerHTML = "";
+          }
+          decreaseTargets();
+        }, targetObj.timeVisible);
+      }
+
+      function targetHit(tObj) {
+        hold = true;
+        score += tObj.pointValue;
+        document.getElementById("score").innerHTML = score;
+        document.getElementById("target-zone").innerHTML = `<img src=${
+          tObj.imgName + "-hit.png"
+        } class=${tObj.imgClassName} style="left: ${imgPos[0]}px; top: ${
+          imgPos[1]
+        }px;"/>`;
+        setTimeout(() => {
+          document.getElementById("target-zone").innerHTML = "";
+          hold = false;
+        }, 800);
+      }
+    </script>
+  </body>
 </html>
