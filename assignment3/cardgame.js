@@ -67,6 +67,7 @@ function checkCardMatch(card1, card2) {
     firstCard.querySelector("img").setAttribute("src", "cards/rear.png");
     secondCard.querySelector("img").setAttribute("src", "cards/rear.png");
   }
+  heldCard = "";
   enableCardClickable();
 }
 
@@ -80,6 +81,7 @@ function selectCard(pos) {
     let test = heldCard;
     flipCard(pos);
     setTimeout(() => checkCardMatch(pos, test), 1500);
-    heldCard = "";
+  } else {
+    enableCardClickable();
   }
 }
