@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--
+   untitled.html
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Menus</title>
+    <meta name="generator" content="Geany 1.38" />
+    <style>
+      html {
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        background-color: aliceblue;
+        width: 100%;
+        height: 100%;
+      }
+      .menu-item {
+        width: 80px;
+        height: 20px;
+        border: 1px solid black;
+        position: absolute;
+      }
+      .menu-list {
+        position: fixed;
+      }
+      #main {
+        width: 100%;
+        height: 100%;
+      }
+      #selected-item-div {
+        position: fixed;
+        top: 5px;
+        left: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="selected-item-div" onclick="event.stopPropagation()">
+      <input type="text" name="selected-item" id="selected-item" disabled />
+    </div>
+    <div id="main"></div>
+
+    <script src="lists.js"></script>
+    <script>
+      let menuDisplayed = false;
+
+      document.addEventListener("click", getCoordinates);
+
+      function getCoordinates(evt) {
+        if (!menuDisplayed) {
+          createList(list, evt.clientX, evt.clientY);
+          menuDisplayed = true;
+        } else {
+          document.getElementById("main").innerHTML = "";
+          setSelectedName("");
+          menuDisplayed = false;
+        }
+      }
+
+      function createList(listToUse, deployPositionX, deployPositionY) {
+        let depthCtr = 0;
+        let out = `<div class="menu-list" style="left:${deployPositionX}px; top:${deployPositionY}px" onclick="event.stopPropagation()">\n`;
+
+        for (let i = 0; i < listToUse.length; i += 1) {
+          if (listToUse[i]?.name) {
+            const innerItem = listToUse[i];
+            // console.log(innerItem.name);
+            out += `<div class="menu-item" style="top:${depthCtr}px;" onclick="setSelectedName('${innerItem.name}')">${innerItem.name}</div>`;
+            if (true) {
+              console.log(`--- Inner list below (${innerItem.name}) ---`);
+              console.log(innerItem.list);
+              console.log("--- Inner list ends --- \n");
+            }
+          } else {
+            // console.log(listToUse[i]);
+            out += `<div class="menu-item" style="top:${depthCtr}px;" onclick="setSelectedName('${listToUse[i]}')">${listToUse[i]}</div>`;
+          }
+          depthCtr += 20;
+        }
+        out += "</div>";
+        document.getElementById("main").innerHTML = out;
+      }
+
+      function setSelectedName(name) {
+        document.getElementById("selected-item").value = name;
+      }
+    </script>
+  </body>
+</html>

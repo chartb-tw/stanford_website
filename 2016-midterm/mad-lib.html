@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--
+   untitled.html
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Mad Lib Generator</title>
+    <meta name="generator" content="Geany 1.38" />
+    <style>
+      body {
+        background-color: aliceblue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Mad Lib Generator</h1>
+    <form id="madlib-layout">
+      <label for="madlib-entry"><h2>Entry</h2></label>
+      <textarea
+        id="madlib-entry"
+        name="madlibEntry"
+        rows="5"
+        cols="30"
+      ></textarea>
+      <br />
+      <button type="button" onclick="makeMadLib()">Make Mad Lib</button>
+    </form>
+    <hr />
+    <h2>Mad Lib</h2>
+    <form id="madlib-make" name="madlib-make"></form>
+    <button type="button" onclick="displayMadLib()">Show result</button>
+    <hr />
+    <h2>Result</h2>
+    <div id="madlib-result"></div>
+
+    <script>
+      const madlibLayout = document.forms["madlib-layout"];
+      let fixedWords = [];
+      let n;
+
+      function makeMadLib() {
+        const inputGiven = madlibLayout["madlibEntry"].value;
+        fixedWords = [];
+        //console.log(madlibLayout["madlibEntry"].value);
+        let splitWords = inputGiven.split("_");
+        let out = "";
+        n = splitWords.length;
+        if (n % 2 === 1) {
+          for (let i = 0; i < n; i += 1) {
+            if (i % 2 === 0) {
+              out += splitWords[i];
+              fixedWords.push(splitWords[i]);
+            } else {
+              out += `<input type="text" placeholder="${splitWords[i]}" name=${
+                "input-" + String((i - 1) / 2)
+              } />`;
+            }
+          }
+        }
+        document.getElementById("madlib-make").innerHTML = out;
+      }
+
+      function displayMadLib() {
+        const madlibToProcess = document.forms["madlib-make"];
+        const temp = [];
+        let out = "";
+        for (let i = 0; i < (n - 1) / 2; i++) {
+          temp.push(madlibToProcess[`input-${i}`].value);
+          //madlibToProcess[`input-${i}`].value = "";
+        }
+        for (let i = 0; i < fixedWords.length; i++) {
+          out += fixedWords[i];
+          if (i < fixedWords.length - 1) {
+            out += temp[i];
+          }
+        }
+        document.getElementById("madlib-result").innerHTML = out;
+      }
+    </script>
+  </body>
+</html>
